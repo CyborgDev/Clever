@@ -5,7 +5,7 @@ class Member {
      * Constantes de l'objet
      */
         //Constantes pour l'inscription au forum
-        const ERR_IS_CO = 'Vous ne pouvez pas accéder à cette page si vous n\'êtes pas connecté';
+        const ERR_IS_CO = 'Vous ne pouvez pas accéder à cette page si vous êtes connecté';
         const SUC_REGISTRATION = 'L\'inscription a été effectuée avec succès';
         const ERR_DATA_NOT_TRANSMITTED = 'Des données n\'ont pas été transmises';
         const ERR_EMAIL_EXIST = 'Cette adresse est déjà utilisée pour un autre compte.';
