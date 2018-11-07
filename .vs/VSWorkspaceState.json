@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\controller",
+    "\\controller\\components",
+    "\\controller\\member",
+    "\\model",
+    "\\view",
+    "\\view\\components",
+    "\\view\\member",
+    "\\webroot",
+    "\\webroot\\css"
+  ],
+  "SelectedNode": "\\view\\components\\head.php",
+  "PreviewInSolutionExplorer": false
+}

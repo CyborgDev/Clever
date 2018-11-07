@@ -1,0 +1,83 @@
+/*
+ * Base structure
+ */
+
+html,
+body {
+    height: 100%;
+    color: #fff;
+    
+    background-image: url(../pictures/dark_space-background.png);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#body-page{
+    min-height: 100%;
+}
+
+footer {
+    background-color: rgb(39, 41, 43);
+}
+
+.footer-copyright {
+    background-color: black;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: .05rem solid #fff;
+  transition: 1s;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #333;
+  border: .05rem solid #fff;
+}
+/*=======================*/
+
+.logo-btn {
+    height: 30x;
+    width: 170px;
+}
+
+.logo-btn:hover {
+    background-color: rgba(105, 105, 105, 0.418);
+}
+
+.home {
+    height: 100%;
+}
+
+.home-style {
+    border-radius: 50px;
+    background-color: rgba(173, 173, 173, 0.507);
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*.container {
+    background-color: black;
+}*/
+
+.has-error{
+    color: red;
+}
+
+.has-success {
+    color: green;
+}
+
+.dark-gray, .dark-grey {
+    background-color: darkgray;
+}
