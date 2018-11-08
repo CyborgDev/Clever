@@ -3,6 +3,7 @@ class Post {
     /**
      * Variables de l'objet
      */
+    private $_id;
     private $_creator;
     private $_text;
     private $_post_time;
@@ -14,7 +15,8 @@ class Post {
      */
 
     public function __construct(){
-        $this->_creator = new Member();         //Type : Member
+        $this->_id = -1;                        //Type : int
+        $this->_creator = -1;                   //Type : int
         $this->_text = "";                      //Type : String
         $this->_post_time = "";                 //Type : Date
         $this->_topic_id = -1;                  //Type : int
@@ -29,18 +31,25 @@ class Post {
 
     /**
      * Fonction GetAll(), usage Member::GetAll();
+     * return : array de Post
      * Cette fonction recupere l'entierete des posts du forum
      * /!\ Dangereux si le nombre de Posts est eleve /!\
      */
     public static function GetAll() {
         global $db;
         $allPosts = $db->prepare('SELECT * FROM posts')->execute();
-        //Remplissage des objets
-        return $allPosts;
+        $postList = array();
+        while ($dataPost = $allPosts->fetch()){
+            $newPost = new Post();
+            $newPost->fill($dataPost);
+            $postList[] = $newPost;
+        }
+        return $postList;
     }
 
     /**
      * Fonction GetAllByUserId(), usage Member::GetAllByUserId($user_id);
+     * return : array de Post
      * Cette fonction recupere l'entierete des posts du forum creer par l'utilisateur numero $user_id
      * @param user_id : int correspondant a l'id d'un utilisateur
      * /!\ Dangereux si le nombre de Posts est eleve /!\
@@ -48,12 +57,18 @@ class Post {
     public static function GetAllByUserId($user_id){
         global $db;
         $allPosts = $db->prepare('SELECT * FROM posts WHERE creator = :user_id')->bindValue(':user_id', $user_id, PDO::PARAM_INT)->execute();
-        //Remplissage des objets
-        return $allPosts;
+        $postList = array();
+        while ($dataPost = $allPosts->fetch()){
+            $newPost = new Post();
+            $newPost->fill($dataPost);
+            $postList[] = $newPost;
+        }
+        return $postList;
     }
 
     /**
      * Fonction GetAllByTopicId(), usage Member::GetAllByTopicId($topic_id);
+     * return : array de Post
      * Cette fonction recupere l'entierete des posts du forum correspondant au topic numero $topic_id
      * @param topic_id : int correspondant a l'id d'un topic
      * /!\ Dangereux si le nombre de Posts est eleve /!\
@@ -61,12 +76,18 @@ class Post {
     public static function GetAllByTopicId($topic_id){
         global $db;
         $allPosts = $db->prepare('SELECT * FROM posts WHERE topic_id = :topic_id')->bindValue(':topic_id', $topic_id, PDO::PARAM_INT)->execute();
-        //Remplissage des objets
-        return $allPosts;
+        $postList = array();
+        while ($dataPost = $allPosts->fetch()){
+            $newPost = new Post();
+            $newPost->fill($dataPost);
+            $postList[] = $newPost;
+        }
+        return $postList;
     }
 
     /**
      * Fonction GetAllByForumId(), usage Member::GetAllByForumId($forum_id);
+     * return : array de Post
      * Cette fonction recupere l'entierete des posts du forum correspondant au forum numero $forum_id
      * @param forum_id : int correspondant a l'id d'un forum
      * /!\ Dangereux si le nombre de Posts est eleve /!\
@@ -74,8 +95,13 @@ class Post {
     public static function GetAllByForumId($forum_id){
         global $db;
         $allPosts = $db->prepare('SELECT * FROM posts WHERE forum_id = :forum_id')->bindValue(':forum_id', $forum_id, PDO::PARAM_INT)->execute();
-        //Remplissage des objets
-        return $allPosts;
+        $postList = array();
+        while ($dataPost = $allPosts->fetch()){
+            $newPost = new Post();
+            $newPost->fill($dataPost);
+            $postList[] = $newPost;
+        }
+        return $postList;
     }
 
     // -------------------------------------------------------------------------------------------------------------- //
@@ -88,11 +114,30 @@ class Post {
      */
 
     /**
-     * Fonction fill(), cette fonction rempli l'objet $this
-     * avec les donnees qui lui sont passees dans le parametre $array
+     * Fonction fill(), usage : $aPost->fill($array);
+     * return : void
+     * Cette fonction rempli l'objet $this avec les donnees qui lui sont passees dans le parametre $array
      * @param array Tableau contenant les donnees d'un objet Post, structure : {id, creator, text, post_time, topic_id, forum_id}
      */
     public function fill($array){
-        //TO DO
+        $this->_id = $array['id'];
+        $this->_creator = $array['creator'];
+        $this->_text = $array['text'];
+        $this->_post_time = $array['post_time'];
+        $this->_topic_id = $array['topic_id'];
+        $this->_forum_id = $array['forum_id'];
+    }
+
+    /**
+     * Fonction edit(), usage : $aPost->edit($text);
+     * return void
+     * Cette fonction modifie le text d'un post en le remplacant par le contenu de $text
+     * @param text String contenant tout le text d'un post
+     */
+    public function edit($text){
+        global $db;
+        $this->_text = $text;
+        $update = $db->prepare('UPDATE posts SET text =? WHERE id =?');
+        $update->execute([$this->_text, $this->_id]);
     }
 }
