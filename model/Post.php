@@ -129,6 +129,33 @@ class Post {
     }
 
     /**
+     * Fonction insert(), usage : $aPost->insert($text);
+     * return void
+     * Cette fonction insert un nouveau post dans la base de donnees
+     * @param creator   Int correspondant à l'id du createur du post
+     * @param text      String contenant tout le text d'un post
+     * @param topic_id  Int correspondant à l'id du topic ou est poste le post
+     * @param forum_id  Int correspondant à l'id du forum dans lequel est poste le post
+     */
+    public function insert($creator, $text, $topic_id, $forum_id){
+        global $db;
+        $this->_creator = $creator;
+        $this->_text = $text;
+        $this->_post_time = date("Y-m-d");
+        $this->_topic_id = $topic_id;
+        $this->_forum_id = $forum_id;
+        $insert = $db->prepare('INSERT INTO posts (id, creator, text, post_time, topic_id, forum_id) VALUES ("", :creator, :text, :post_time, :topic_id, :forum_id)');
+        $insert->execute(array(
+                "creator"   => $this->_creator,
+                "text"      => $this->_text,
+                "post_time" => $this->_post_time,
+                "topic_id"  => $this->_topic_id,
+                "forum_id"  => $this->_forum_id
+            )
+        );
+    }
+
+    /**
      * Fonction edit(), usage : $aPost->edit($text);
      * return void
      * Cette fonction modifie le text d'un post en le remplacant par le contenu de $text
@@ -139,5 +166,17 @@ class Post {
         $this->_text = $text;
         $update = $db->prepare('UPDATE posts SET text =? WHERE id =?');
         $update->execute([$this->_text, $this->_id]);
+    }
+
+    /**
+     * Fonction delete(), usage : $aPost->delete();
+     * return void
+     * Cette fonction supprime le post cible de la base de donnees
+     */
+    public function delete(){
+        global $db;
+        $delete = $db->prepare('DELETE FROM posts WHERE id = :id');
+        $delete->bindValue(':id', $this->_id, PDO::PARAM_INT);
+        $delete->execute();
     }
 }
