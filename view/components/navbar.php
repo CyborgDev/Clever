@@ -11,23 +11,23 @@
     if ($lvl === 1){
         echo '
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.php?page=member/register"><span class="glyphicon glyphicon-user"></span> S\'inscrire</a></li>
-            <li><a href="index.php?page=member/login"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
+            <li><a href="index.php?page=member/Register"><span class="glyphicon glyphicon-user"></span> S\'inscrire</a></li>
+            <li><a href="index.php?page=member/Login"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
         </ul>';
     } elseif ($lvl === 2){
             echo '
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Liste des membres</a></li>
-                    <li><a href="index.php?page=member/profil">Profil</a></li>
-					<li><a href="index.php?page=member/disconnect">Déconnexion</a></li>
+                    <li><a href="index.php?page=member/Profil">Profil</a></li>
+					<li><a href="index.php?page=member/Disconnect">Déconnexion</a></li>
                 </ul>';
     } elseif ($lvl === 3){
         echo '
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="index.php?page=member/list">Liste de membres</a></li>
+                <li><a href="index.php?page=member/List">Liste de membres</a></li>
                 <li><a href="#">Modération</a></li>
-                <li><a href="index.php?page=member/profil">Profil</a></li>
-				<li><a href="index.php?page=member/disconnect">Déconnexion</a></li>
+                <li><a href="index.php?page=member/Profil">Profil</a></li>
+				<li><a href="index.php?page=member/Disconnect">Déconnexion</a></li>
             </ul>';
     }
      ?>

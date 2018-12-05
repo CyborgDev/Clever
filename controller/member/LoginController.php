@@ -17,13 +17,13 @@
         if (isset($_POST['pseudo']) && isset($_POST['password'])){
     
             //Creation de l'objet Member
-            $new_connected = Member::asGuest();
+            $new_connected = new Member();
     
             //Recuperation des donnees du formulaire
             $new_connected->setPseudo($_POST['pseudo']);
             $new_connected->setPwd($_POST['password']);
             $new_connected->setEmail('');
-            $new_connected->setDiscord("Donn�e non renseign�e");
+            $new_connected->setDiscord("Donnee non renseignee");
             $new_connected->randomAvatar();
             $new_connected->setSignature('Citoyen de la Providence');
             $new_connected->setLocation("Nowhere");

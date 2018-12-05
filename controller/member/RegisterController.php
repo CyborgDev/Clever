@@ -5,7 +5,7 @@
      * Les infos impératives sont le pseudo, le mot de passe et l'email, les autres infos sont générées par défaut ou ne sont pas obligatoires.
      */
 	//Inclusion du modele Member
-       include 'model/Member.php';
+    include 'model/Member.php';
 	if ($pseudo == ''){
 		if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['email'])){
 

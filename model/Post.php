@@ -30,10 +30,10 @@ class Post {
      */
 
     /**
-     * Fonction GetAll(), usage Member::GetAll();
-     * return : array de Post
-     * Cette fonction recupere l'entierete des posts du forum
+     * Fonction GetAll(), Cette fonction recupere l'entierete des posts du forum
      * /!\ Dangereux si le nombre de Posts est eleve /!\
+     * @return array $postList;
+     * @see Post::GetAll();
      */
     public static function GetAll() {
         global $db;
@@ -48,11 +48,11 @@ class Post {
     }
 
     /**
-     * Fonction GetAllByUserId(), usage Member::GetAllByUserId($user_id);
-     * return : array de Post
-     * Cette fonction recupere l'entierete des posts du forum creer par l'utilisateur numero $user_id
-     * @param user_id : int correspondant a l'id d'un utilisateur
-     * /!\ Dangereux si le nombre de Posts est eleve /!\
+     * Fonction GetAllByUserId(), Cette fonction recupere l'entierete des posts du forum creer par l'utilisateur numero $user_id
+     * /!\ Dangereux si le nombre de Posts est eleve /!\     
+     * @param int : $user_id correspondant a l'id d'un utilisateur
+     * @return array $postList;
+     * @see Post::GetAllByUserId($user_id);
      */
     public static function GetAllByUserId($user_id){
         global $db;
@@ -67,11 +67,11 @@ class Post {
     }
 
     /**
-     * Fonction GetAllByTopicId(), usage Member::GetAllByTopicId($topic_id);
-     * return : array de Post
-     * Cette fonction recupere l'entierete des posts du forum correspondant au topic numero $topic_id
-     * @param topic_id : int correspondant a l'id d'un topic
+     * Fonction GetAllByTopicId(), Cette fonction recupere l'entierete des posts du forum correspondant au topic numero $topic_id
      * /!\ Dangereux si le nombre de Posts est eleve /!\
+     * @param int : topic_id correspondant a l'id d'un topic
+     * @return array $postList;
+     * @see Post::GetAllByTopicId($topic_id);;
      */
     public static function GetAllByTopicId($topic_id){
         global $db;
@@ -86,11 +86,11 @@ class Post {
     }
 
     /**
-     * Fonction GetAllByForumId(), usage Member::GetAllByForumId($forum_id);
-     * return : array de Post
-     * Cette fonction recupere l'entierete des posts du forum correspondant au forum numero $forum_id
-     * @param forum_id : int correspondant a l'id d'un forum
+     * Fonction GetAllByForumId(), Cette fonction recupere l'entierete des posts du forum correspondant au forum numero $forum_id
      * /!\ Dangereux si le nombre de Posts est eleve /!\
+     * @param int : $forum_id correspondant a l'id d'un forum
+     * @return array $postList;
+     * @see Post::GetAllByForumId($forum_id);
      */
     public static function GetAllByForumId($forum_id){
         global $db;
@@ -119,13 +119,13 @@ class Post {
      * Cette fonction rempli l'objet $this avec les donnees qui lui sont passees dans le parametre $array
      * @param array Tableau contenant les donnees d'un objet Post, structure : {id, creator, text, post_time, topic_id, forum_id}
      */
-    public function fill($array){
-        $this->_id = $array['id'];
-        $this->_creator = $array['creator'];
-        $this->_text = $array['text'];
-        $this->_post_time = $array['post_time'];
-        $this->_topic_id = $array['topic_id'];
-        $this->_forum_id = $array['forum_id'];
+    public function fill($data){
+        $this->_id = $data['id'];
+        $this->_creator = $data['creator'];
+        $this->_text = $data['text'];
+        $this->_post_time = $data['post_time'];
+        $this->_topic_id = $data['topic_id'];
+        $this->_forum_id = $data['forum_id'];
     }
 
     /**

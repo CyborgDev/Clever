@@ -13,10 +13,10 @@
     include 'view/components/head.php';
  
     //On inclut le contrôleur s'il existe et s'il est spécifié
-    if (!empty($_GET['page']) && is_file('controller/'.$_GET['page'].'.php')){
+    if (!empty($_GET['page']) && is_file('controller/'.$_GET['page'].'Controller.php')){
 
         //On inclut le contrôleur
-        include 'controller/'.$_GET['page'].'.php';
+        include 'controller/'.$_GET['page'].'Controller.php';
 
     } else {
         include 'view/home.php';

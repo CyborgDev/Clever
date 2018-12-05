@@ -59,6 +59,21 @@ class Member {
      */
 
     /**
+     * Fonction fill(), usage : $aPost->fill($array);
+     * return : void
+     * Cette fonction rempli l'objet $this avec les donnees qui lui sont passees dans le parametre $array
+     * @param array Tableau contenant les donnees d'un objet Post, structure : {id, creator, text, post_time, topic_id, forum_id}
+     */
+    public function fill($data){
+        $this->_id = $data['id'];
+        $this->_creator = $data['creator'];
+        $this->_text = $data['text'];
+        $this->_post_time = $data['post_time'];
+        $this->_topic_id = $data['topic_id'];
+        $this->_forum_id = $data['forum_id'];
+    }
+
+    /**
      * Fonction randomAvatar(), usage : $aMember->randomAvatar();
      * return void
      * Cette fonction applique aleatoirement un des 4 avatars de base au profil cible
@@ -143,8 +158,8 @@ class Member {
             return Member::ERR_MISSING_INFO;
         } else {
             global $db;
-            $query = $db->prepare("INSERT INTO members (id, pseudo, pwd, email, discord, avatar, signature, location, registered, last_visit, rank, number_post) VALUES ('', :pseudo, :pwd, :email, :discord, :avatar, :signature, :location, :registered, :last_visit, :rank, :number_post)");
-            $query->execute(array(
+            $insert = $db->prepare("INSERT INTO members (id, pseudo, pwd, email, discord, avatar, signature, location, registered, last_visit, rank, number_post) VALUES ('', :pseudo, :pwd, :email, :discord, :avatar, :signature, :location, :registered, :last_visit, :rank, :number_post)");
+            $insert->execute(array(
                 "pseudo" => $this->_pseudo, 
                 "pwd" => $this->_pwd,
                 "email" => $this->_email,
